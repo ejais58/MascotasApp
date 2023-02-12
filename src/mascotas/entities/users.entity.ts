@@ -1,14 +1,17 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 
 @Entity()
 export class Usuarios {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     Id_Usuario: number
 
-    @Column({length: 20})
+    @Column()
     Nombre_Usuario: string
 
-    @Column({length: 20})
+    @Column()
     Apellido_Usuario: string
+
+    @Column()
+    Pass_Usuario: string
 }

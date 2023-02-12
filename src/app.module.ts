@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Mascotas } from './mascotas/entities/mascota.entity';
 import { MascotasModule } from './mascotas/mascotas.module';
+import { Usuarios } from './mascotas/entities/users.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -14,7 +15,7 @@ import { MascotasModule } from './mascotas/mascotas.module';
     password: '123456',
     database: 'NestDB',
     options: { encrypt: false },
-    entities: [Mascotas]
+    entities: [Mascotas, Usuarios]
   }),MascotasModule],
   controllers: [AppController],
   providers: [AppService],
