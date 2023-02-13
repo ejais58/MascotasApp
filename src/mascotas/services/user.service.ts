@@ -42,9 +42,11 @@ export class UserService {
         } 
 
         //generar jwt
-        const payload = {id: findPersonal.Id_Usuario, nombre: findPersonal.Nombre_Usuario}
+        const payload = {id: findPersonal.Id_Usuario, nombre: findPersonal.Nombre_Usuario, roll: findPersonal.Roll_Usuario}
         const token = this.jwtService.sign(payload)
         const data = {token}
         return data;
     }
+
+    
 }

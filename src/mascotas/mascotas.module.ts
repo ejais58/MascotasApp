@@ -8,6 +8,7 @@ import { MascotaService } from './services/mascotas.service';
 import { UserService } from './services/user.service';
 import { JwtModule } from '@nestjs/jwt/dist';
 import { UsuarioController } from './controllers/usuario.controller';
+import { JwtStrategy } from './jwt.strategy';
 
 
 
@@ -18,6 +19,6 @@ import { UsuarioController } from './controllers/usuario.controller';
         signOptions: { expiresIn: '1h' },
     }),],
     controllers: [MascotaController, UsuarioController],
-    providers: [MascotaService, UserService]
+    providers: [MascotaService, UserService, JwtStrategy]
 })
 export class MascotasModule {}

@@ -14,4 +14,7 @@ export class Usuarios {
 
     @Column()
     Pass_Usuario: string
+
+    @Column()
+    Roll_Usuario: string
 }
