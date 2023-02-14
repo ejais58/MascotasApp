@@ -20,6 +20,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: JwtPayload, id: number) {
    
 
+
+    // if(!(payload.roll == 'admin')){
+    //   throw new HttpException('forbidden', 403);
+    // }
     
     // if (payload.id !== id){
     //     throw new HttpException('forbidden', 403);
