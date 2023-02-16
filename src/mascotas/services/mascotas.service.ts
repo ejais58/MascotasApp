@@ -4,22 +4,22 @@ import { Mascotas } from '../entities/mascota.entity';
 import { Repository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
 import { PaginationDto } from '../dto/pagination.dto';
+import { MascotaDao } from '../data/dao/mascotaDao';
 
 
 
 
 @Injectable()
 export class MascotaService {
-    constructor(@InjectRepository(Mascotas) private mascotaRespository: Repository<Mascotas>){}
+    constructor(@InjectRepository(Mascotas) private mascotaRespository: Repository<Mascotas>, private mascotaDao: MascotaDao){}
 
     
-    getMascotas({page, limit}: PaginationDto): Promise<Mascotas[]>{
-        const offset = (page - 1) * limit;
-        return this.mascotaRespository.find({skip: offset, take: limit});
+    getMascotas(pagination: PaginationDto): Promise<Mascotas[]>{
+        return this.mascotaDao.findMascotasAdmin(pagination)
     }
 
     getMascotaByIdUser(id: number): Promise<Mascotas[]>{
-        return this.mascotaRespository.find({where: {Id_Dueno: id}})
+        return this.mascotaDao.findMascotasByIdUser(id);
     }
 
     

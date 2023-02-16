@@ -6,11 +6,12 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import * as argon2 from 'argon2'
 import { JwtService } from '@nestjs/jwt';
 import { LoginUserDto } from '../dto/login-user.dto';
+import { UserDao } from '../data/dao/userDao';
 
 
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(Usuarios) private userRespository: Repository<Usuarios>, private jwtService: JwtService){}
+    constructor(@InjectRepository(Usuarios) private userRespository: Repository<Usuarios>, private jwtService: JwtService, private userDao: UserDao){}
 
     async createUser(user: CreateUserDto): Promise<Usuarios>{
         //Hash password
@@ -21,8 +22,7 @@ export class UserService {
         });
         
         //Create personal
-        const newUser = this.userRespository.create(user);
-        return this.userRespository.save(newUser);
+        return this.userDao.registerUser(user);
     }
 
     async login(personal: LoginUserDto){
@@ -30,7 +30,7 @@ export class UserService {
         const { Nombre_Usuario, Pass_Usuario} = personal;
 
         //Busco si existe en la base de datos el email ingresado en el cliente
-        const findPersonal = await this.userRespository.findOne({where: {Nombre_Usuario: Nombre_Usuario}});
+        const findPersonal = await this.userDao.findUser(Nombre_Usuario);
         if (!findPersonal){
             throw new HttpException('USER NOT FOUND', 404);
         }

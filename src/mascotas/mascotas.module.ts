@@ -9,6 +9,8 @@ import { UserService } from './services/user.service';
 import { JwtModule } from '@nestjs/jwt/dist';
 import { UsuarioController } from './controllers/usuario.controller';
 import { JwtStrategy } from './jwt.strategy';
+import { MascotaDao } from './data/dao/mascotaDao';
+import { UserDao } from './data/dao/userDao';
 
 
 
@@ -19,6 +21,6 @@ import { JwtStrategy } from './jwt.strategy';
         signOptions: { expiresIn: '1h' },
     }),],
     controllers: [MascotaController, UsuarioController],
-    providers: [MascotaService, UserService, JwtStrategy]
+    providers: [MascotaService, UserService, JwtStrategy, MascotaDao, UserDao]
 })
 export class MascotasModule {}
