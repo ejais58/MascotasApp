@@ -11,7 +11,7 @@ import { UserDao } from '../data/dao/userDao';
 
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(Usuarios) private userRespository: Repository<Usuarios>, private jwtService: JwtService, private userDao: UserDao){}
+    constructor(private jwtService: JwtService, private userDao: UserDao){}
 
     async createUser(user: CreateUserDto): Promise<Usuarios>{
         //Hash password
@@ -29,20 +29,12 @@ export class UserService {
         
         const { Nombre_Usuario, Pass_Usuario} = personal;
 
-        //Busco si existe en la base de datos el email ingresado en el cliente
-        const findPersonal = await this.userDao.findUser(Nombre_Usuario);
-        if (!findPersonal){
-            throw new HttpException('USER NOT FOUND', 404);
-        }
-
-        //Validar contraseñas (base de datos y la ingresada por el cliente)
-        const validar = await argon2.verify(findPersonal.Pass_Usuario, Pass_Usuario)
-        if (!validar){
-            throw new HttpException('PASSWORD INVALID', 403);
-        } 
+        /*Busco si existe en la base de datos el nombre ingresado en el cliente, 
+        y hasheo la contraseña ingresada para comparar con la contraseña de la base de datos*/
+        const findUser = await this.userDao.findUserAndValidatePassword(Nombre_Usuario,Pass_Usuario);
 
         //generar jwt
-        const payload = {id: findPersonal.Id_Usuario, nombre: findPersonal.Nombre_Usuario, roll: findPersonal.Roll_Usuario}
+        const payload = {id: findUser.Id_Usuario, nombre: findUser.Nombre_Usuario, roll: findUser.Roll_Usuario}
         const token = this.jwtService.sign(payload)
         const data = {token}
         return data;

@@ -11,7 +11,7 @@ import { MascotaDao } from '../data/dao/mascotaDao';
 
 @Injectable()
 export class MascotaService {
-    constructor(@InjectRepository(Mascotas) private mascotaRespository: Repository<Mascotas>, private mascotaDao: MascotaDao){}
+    constructor(private mascotaDao: MascotaDao){}
 
     
     getMascotas(pagination: PaginationDto): Promise<Mascotas[]>{
