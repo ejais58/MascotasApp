@@ -1,12 +1,12 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { UserService } from '../services/user.service';
-import { Usuarios } from '../entities/users.entity';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { LoginUserDto } from '../dto/login-user.dto';
+import { UserService } from './user.service';
+import { Usuarios } from './entities/users.entity';
+import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 
 @Controller('users')
-export class UsuarioController {
+export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Post('register')

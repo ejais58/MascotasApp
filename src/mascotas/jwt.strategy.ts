@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException, HttpException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import { UserService } from './services/user.service';
-import { MascotaService } from './services/mascotas.service';
-import { JwtPayload } from '../../src/mascotas/entities/interfaces/jwtPayload';
+import { UserService } from './user/user.service';
+import { MascotaService } from './mascota/mascotas.service';
+import { JwtPayload } from './user/entities/interfaces/jwtPayload';
 
 
 

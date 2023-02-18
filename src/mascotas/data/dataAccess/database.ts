@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Mascotas } from '../../entities/mascota.entity';
-import { Usuarios } from '../../entities/users.entity';
+import { Mascotas } from '../../mascota/entities/mascota.entity';
+import { Usuarios } from '../../user/entities/users.entity';
 
 export const config: TypeOrmModuleOptions = {
     type: 'mssql',

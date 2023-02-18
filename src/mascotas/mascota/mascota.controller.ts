@@ -1,11 +1,11 @@
 import { Controller, Get, Param, UseGuards, ParseIntPipe, Req, HttpException, Query } from '@nestjs/common';
-import { Mascotas } from '../entities/mascota.entity';
-import { MascotaService } from '../services/mascotas.service';
+import { Mascotas } from './entities/mascota.entity';
+import { MascotaService } from './mascotas.service';
 import { JwtAuthGuard } from '../guard/jwt-auth.guard';
-import { UserService } from '../services/user.service';
+import { UserService } from '../user/user.service';
 import * as jwt from 'jsonwebtoken';
-import { JwtPayload } from '../entities/interfaces/jwtPayload'
-import { PaginationDto } from '../dto/pagination.dto';
+import { JwtPayload } from '../user/entities/interfaces/jwtPayload'
+import { PaginationDto } from '../user/dto/pagination.dto';
 
 
 

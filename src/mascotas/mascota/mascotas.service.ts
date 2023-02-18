@@ -1,9 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm/dist';
-import { Mascotas } from '../entities/mascota.entity';
-import { Repository } from 'typeorm';
-import * as jwt from 'jsonwebtoken';
-import { PaginationDto } from '../dto/pagination.dto';
+import { Mascotas } from './entities/mascota.entity';
+import { PaginationDto } from '../user/dto/pagination.dto';
 import { MascotaDao } from '../data/dao/mascotaDao';
 
 

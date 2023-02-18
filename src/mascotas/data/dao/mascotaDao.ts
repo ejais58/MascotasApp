@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { Mascotas } from '../../entities/mascota.entity';
+import { Mascotas } from '../../mascota/entities/mascota.entity';
 import { Repository } from 'typeorm';
-import { PaginationDto } from '../../dto/pagination.dto';
+import { PaginationDto } from '../../user/dto/pagination.dto';
 
 
 export class MascotaDao{
