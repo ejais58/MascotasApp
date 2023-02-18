@@ -1,5 +1,5 @@
 import { InjectRepository } from "@nestjs/typeorm";
-import { Usuarios } from '../../user/entities/users.entity';
+import { User } from '../../user/entities/users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../../user/dto/create-user.dto';
 import { HttpException } from '@nestjs/common';
@@ -8,7 +8,7 @@ import * as argon2 from 'argon2';
 
 
 export class UserDao{
-    constructor(@InjectRepository(Usuarios) private userRespository: Repository<Usuarios>){}
+    constructor(@InjectRepository(User) private userRespository: Repository<User>){}
 
     async registerUser(user: CreateUserDto){
         const newUser = this.userRespository.create(user);

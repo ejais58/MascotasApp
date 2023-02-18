@@ -1,6 +1,6 @@
 import {  HttpException,Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm/dist';
-import { Usuarios } from './entities/users.entity';
+import { User } from './entities/users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as argon2 from 'argon2'
@@ -13,7 +13,7 @@ import { UserDao } from '../data/dao/userDao';
 export class UserService {
     constructor(private jwtService: JwtService, private userDao: UserDao){}
 
-    async createUser(user: CreateUserDto): Promise<Usuarios>{
+    async createUser(user: CreateUserDto): Promise<User>{
         //Hash password
         user.Pass_Usuario = await argon2.hash(user.Pass_Usuario, {
             type: argon2.argon2d,

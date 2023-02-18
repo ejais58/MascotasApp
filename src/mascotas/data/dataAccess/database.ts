@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Mascotas } from '../../mascota/entities/mascota.entity';
-import { Usuarios } from '../../user/entities/users.entity';
+import { User } from '../../user/entities/users.entity';
 
 export const config: TypeOrmModuleOptions = {
     type: 'mssql',
@@ -10,5 +10,5 @@ export const config: TypeOrmModuleOptions = {
     password: '123456',
     database: 'NestDB',
     options: { encrypt: false },
-    entities: [Mascotas, Usuarios]
+    entities: [Mascotas, User]
 };
